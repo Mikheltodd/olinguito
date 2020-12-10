@@ -22,10 +22,15 @@ api = FastAPI()
 #     return hotel_info
 
 
-# @api.get("/hotel/details/{hotel_name}")
-# async def get_hotel_info(hotel_name: str):
+@api.get("/hotel/details/{hotel_name}")
+async def get_hotel(hotel_name: str):
+    hotel_in_db = get_hotel_info(hotel_name)
+    if hotel_in_db == None:
+        raise HTTPException(status_code=404, detail="El hotel no existe")
 
-#     return hotel_info
+    hotel_out = HotelOut(**hotel_in_db.dict())
+
+    return hotel_out
 
 
 @api.put("/hotel/calculation/")
