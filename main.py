@@ -26,6 +26,7 @@ async def get_hotel_info(hotel_name: str):
 
 
 @api.put("/calculation/")
-async def calculate_prices(hotel_data: HotelIn, u, i):
-
+async def calculate_prices(calculation_in_db: CalculationInDB, hotel_data: HotelInDB, u: float, i: float):
+    calculation_results = calculation_results(
+        calculation_in_db, hotel_data, u, i)
     return calculation_results
