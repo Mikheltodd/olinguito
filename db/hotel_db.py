@@ -7,7 +7,7 @@ class HotelInDB(BaseModel):
     # Atributos del Hotel
     name: str
     n_rooms: int
-    operation_cost: float
+    total_operation_cost: float
     l_days: int
     h_days: int
 
@@ -17,17 +17,17 @@ database_hotels = {
     # Hotel de prueba: olinguito
     "olinguito": HotelInDB(**{"name": "olinguito",
                               "n_rooms": 25,
-                              "operation_cost":18000,
+                              "total_operation_cost":450000,
                               "l_days":120,
                               "h_days":100}),
     "Hotel1": HotelInDB(**{"name": "Hotel1",
                            "n_rooms": 20,
-                           "operation_cost": 15000,
+                           "total_operation_cost": 300000,
                            "l_days": 100,
                            "h_days": 80}),
     "Hotel2": HotelInDB(**{"name": "Hotel2",
                            "n_rooms": 30,
-                           "operation_cost": 20000,
+                           "total_operation_cost": 600000,
                            "l_days": 150,
                            "h_days": 90}),
 }
