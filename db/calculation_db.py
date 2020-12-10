@@ -1,21 +1,11 @@
+# Miguel: Módulo de cálculo
 from datetime import datetime
 from pydantic import BaseModel
 
 
 class CalculationInDB(BaseModel):
-    id_transaction: int = 0
-    username: str
-    date: datetime = datetime.now()
-    value: int
-    actual_balance: int
 
 
-database_transactions = []
-generator = {"id": 0}
+def calculation_results(calculation_in_db: CalculationInDB):
 
-
-def save_transaction(transaction_in_db: CalculationInDB):
-    generator["id"] = generator["id"] + 1
-    transaction_in_db.id_transaction = generator["id"]
-    database_transactions.append(transaction_in_db)
-    return transaction_in_db
+    return calculation_results

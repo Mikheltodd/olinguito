@@ -1,31 +1,24 @@
+# Luis: completar el módulo hotel_db
 from typing import Dict
 from pydantic import BaseModel
 
 
 class HotelInDB(BaseModel):
-    username: str
-    password: str
-    balance: int
+    # Atributos del Hotel
 
 
-database_users = Dict[str, HotelInDB]
-database_users = {
-    "camilo24": HotelInDB(**{"username": "camilo24",
-                             "password": "root",
-                             "balance": 12000}),
-    "andres18": HotelInDB(**{"username": "andres18",
-                             "password": "hola",
-                             "balance": 34000}),
+database_hotels = Dict[str, HotelInDB]
+database_hotels = {
+    # Hotel de prueba: olinguito
+    "olinguito": HotelInDB(**{}),
 }
 
 
-def get_user(username: str):
-    if username in database_users.keys():
-        return database_users[username]
-    else:
-        return None
+def get_hotel_info(hotel_name: str):
+    # retornar datos del hotel
+    return hotel_name
 
 
-def update_user(user_in_db: HotelInDB):
-    database_users[user_in_db.username] = user_in_db
-    return user_in_db
+def update_hotel(hotel_in_db: HotelInDB):
+    # actualizar datos del hotel
+    return hotel_in_db

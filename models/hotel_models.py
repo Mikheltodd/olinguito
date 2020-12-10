@@ -1,11 +1,8 @@
+# Estefany: definir parámetros de entrada y salida de los hoteles en hotel_models.py
 from pydantic import BaseModel
 
 
 class HotelIn(BaseModel):
-    username: str
-    password: str
 
 
 class HotelOut(BaseModel):
-    username: str
-    balance: int

@@ -1,15 +1,9 @@
+# Estefany: definir parámetros de entrada y salida de los cálculos en calculation_models.py
 from pydantic import BaseModel
 from datetime import datetime
 
 
 class CalculationIn(BaseModel):
-    username: str
-    value: int
 
 
 class CalculationOut(BaseModel):
-    id_transaction: int
-    username: str
-    date: datetime
-    value: int
-    actual_balance: int
