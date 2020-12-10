@@ -9,8 +9,6 @@ class HotelIn(BaseModel):
     l_days: int 
     h_days: int 
 
-
-
 class HotelOut(BaseModel):
     name: str
     n_rooms: int 

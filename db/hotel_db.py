@@ -43,3 +43,7 @@ def get_hotel_info(hotel_name: str):
 def update_hotel(hotel_in_db: HotelInDB):
     database_hotels[hotel_in_db.name] = hotel_in_db
     return hotel_in_db
+
+#Devuelve los valores de lista de hoteles
+def get_all_hotels():
+    return database_hotels.values()

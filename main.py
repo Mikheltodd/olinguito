@@ -2,7 +2,7 @@
 from fastapi.middleware.cors import CORSMiddleware
 
 from db.hotel_db import HotelInDB
-from db.hotel_db import get_hotel_info, update_hotel
+from db.hotel_db import get_hotel_info, update_hotel, get_all_hotels
 
 from db.calculation_db import CalculationInDB
 from db.calculation_db import calculate_prices
@@ -48,3 +48,13 @@ async def make_calculation(calculation_in: CalculationIn):
     calculation_results_db = calculate_prices(calculation_results_db, hotel)
     calculation_out = CalculationOut(**calculation_results_db.dict())
     return calculation_out
+
+@api.get("/hotel/list")
+async def list_hotels():
+    hotels_in_db = get_all_hotels()
+    hotels_out = []
+    for hotel in hotels_in_db:
+        hotel_out = HotelOut(**hotel.dict())
+        hotels_out.append(hotel_out)
+    
+    return hotels_out
