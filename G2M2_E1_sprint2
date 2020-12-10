@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "fe188151-a880-4b98-b73f-889bd7d23ad0",
+		"name": "G2M2_E1_sprint2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pet_Get_All_Hotels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/list",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet_Put_Hotel",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hotel_name\": \"olinguito\",\r\n    \"expected_profit\": 11,\r\n    \"incidental_value\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/calculation/",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"calculation",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pet_Get_Hotel",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/details/Hotel1",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"details",
+						"Hotel1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
