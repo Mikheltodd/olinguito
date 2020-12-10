@@ -18,7 +18,7 @@ database_calculations = []
 generator = {"id": 0}
 
 
-def calculation_results(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB, u: float, i: float):
+def calculate_prices(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB, u: float, i: float):
 
     # Calculation Values
     u = u/100
