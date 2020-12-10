@@ -2,10 +2,18 @@ from pydantic import BaseModel
 
 
 class HotelIn(BaseModel):
-    username: str
-    password: str
+    name: str
+    n_rooms: int 
+    operation_cost: float 
+    l_days: int 
+    h_days: int 
+
 
 
 class HotelOut(BaseModel):
-    username: str
-    balance: int
+    name: str
+    n_rooms: int 
+    operation_cost: float 
+    l_days: int 
+    h_days: int 
+    
