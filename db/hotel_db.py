@@ -34,12 +34,12 @@ database_hotels = {
 
 
 def get_hotel_info(hotel_name: str):
-    if name in database_hotels.keys():
-        return database_hotels[name]
+    if hotel_name in database_hotels.keys():
+        return database_hotels[hotel_name]
     else:
         return None
 
 
 def update_hotel(hotel_in_db: HotelInDB):
-    database_hotels[hotel_in_db.name] = user_in_db
+    database_hotels[hotel_in_db.name] = hotel_in_db
     return hotel_in_db

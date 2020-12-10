@@ -1,6 +1,8 @@
 # Miguel: Calculation Model
 from datetime import datetime
 from pydantic import BaseModel
+from db.hotel_db import HotelInDB
+
 
 
 class CalculationInDB(BaseModel):
@@ -9,20 +11,22 @@ class CalculationInDB(BaseModel):
     date: datetime = datetime.now()
     expected_profit: float
     incidental_value: float
-    h_price: float
-    m_price: float
-    l_price: float
+    h_price: float = 0
+    m_price: float = 0
+    l_price: float = 0
 
 
 database_calculations = []
-generator = {"id": 0}
+generator = {"id":0}
 
 
-def calculate_prices(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB, u: float, i: float):
+def calculate_prices(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB):
 
     # Calculation Values
-    u = u/100
-    i = i/100
+    generator["id"] = generator["id"] + 1
+    calculation_in_db.id_calculation = generator["id"]
+    u = calculation_in_db.expected_profit/100
+    i = calculation_in_db.incidental_value/100
     l_days = hotel_in_db.l_days
     h_days = hotel_in_db.h_days
     m_days = 365 - l_days - h_days
@@ -31,15 +35,11 @@ def calculate_prices(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB,
     h_price = ((365-m_days)*m_price - l_days*l_price)/h_days
 
     # Values for Calculation Results
-    generator["id"] = generator["id"] + 1
-    hotel_name = hotel_in_db.hotel_name
-    calculation_in_db.id_calculation = generator["id"]
-    calculation_in_db.hotel_name = hotel_name
-    calculation_in_db.expected_profit = u
-    calculation_in_db.incidental_value = i
-    calculation_in_db.l_price = l_price
-    calculation_in_db.m_price = m_price
+    
     calculation_in_db.h_price = h_price
+    calculation_in_db.m_price = m_price
+    calculation_in_db.l_price = l_price
+    
 
     # Save Calculation Results in DB
     database_calculations.append(calculation_in_db)

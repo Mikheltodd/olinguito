@@ -1,9 +1,12 @@
 # Mauricio & Allison: definir las funciones de la api y sus url
 from fastapi.middleware.cors import CORSMiddleware
+
 from db.hotel_db import HotelInDB
 from db.hotel_db import get_hotel_info, update_hotel
+
 from db.calculation_db import CalculationInDB
 from db.calculation_db import calculate_prices
+
 from models.hotel_models import HotelIn, HotelOut
 from models.calculation_models import CalculationIn, CalculationOut
 
@@ -35,12 +38,13 @@ async def make_calculation(calculation_in: CalculationIn):
     # Validación entradas
     if hotel == None:
         raise HTTPException(status_code=404, detail="El hotel no existe")
-    if calculation_in.expected_profit < 0 | | calculation_in.incidental_value < 0:
+    if calculation_in.expected_profit < 0 or calculation_in.incidental_value < 0:
         raise HTTPException(
             status_code=400, detail="Porcentaje de utilidad y/o Porcentaje de imprevistos no pueden ser negativos")
 
     # Cálculo de los precios
-    calculation_results_db = calculate_prices(
-        calculation_in, hotel, u, i)
-    calculation_results = CalculationOut(**calculation_results_db.dict())
-    return calculation_results
+    calculation_results_db = CalculationInDB(**calculation_in.dict())
+    
+    calculation_results_db = calculate_prices(calculation_results_db, hotel)
+    calculation_out = CalculationOut(**calculation_results_db.dict())
+    return calculation_out
