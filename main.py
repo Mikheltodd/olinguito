@@ -20,7 +20,15 @@ api = FastAPI()
 # async def update_hotel(user_in: HotelIn):
 
 #     return hotel_info
+origins =[
+    "http://localhost.tiangolo.com","https://localhost.tiangolo.com",
+    "https://localhost", "http://localhost:8080", "https://cajero-app1912.herokuapp.com"
+]
 
+api.add_middleware(
+    CORSMiddleware, allow_origins=origins,
+    allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
+)
 
 @api.get("/hotel/details/{hotel_name}")
 async def get_hotel(hotel_name: str):
