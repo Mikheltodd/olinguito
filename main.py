@@ -20,15 +20,16 @@ api = FastAPI()
 # async def update_hotel(user_in: HotelIn):
 
 #     return hotel_info
-origins =[
-    "http://localhost.tiangolo.com","https://localhost.tiangolo.com",
-    "https://localhost", "http://localhost:8080", "https://cajero-app1912.herokuapp.com"
+origins = [
+    "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
+    "https://localhost", "http://localhost:8080", "https://olinguito-app.herokuapp.com"
 ]
 
 api.add_middleware(
     CORSMiddleware, allow_origins=origins,
     allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
 )
+
 
 @api.get("/hotel/details/{hotel_name}")
 async def get_hotel(hotel_name: str):
@@ -57,10 +58,11 @@ async def make_calculation(calculation_in: CalculationIn):
 
     # Cálculo de los precios
     calculation_results_db = CalculationInDB(**calculation_in.dict())
-    
+
     calculation_results_db = calculate_prices(calculation_results_db, hotel)
     calculation_out = CalculationOut(**calculation_results_db.dict())
     return calculation_out
+
 
 @api.get("/hotel/list")
 async def list_hotels():
@@ -69,5 +71,5 @@ async def list_hotels():
     for hotel in hotels_in_db:
         hotel_out = HotelOut(**hotel.dict())
         hotels_out.append(hotel_out)
-    
+
     return hotels_out
