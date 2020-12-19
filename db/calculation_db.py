@@ -45,3 +45,13 @@ def calculate_prices(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB)
     # Save Calculation Results in DB
     database_calculations.append(calculation_in_db)
     return calculation_in_db
+
+def get_calculations_list(hotel_name: str):
+    calculations=[]
+    for cal in database_calculations:
+        if cal.hotel_name == hotel_name:
+            calculations.append(cal)
+    return calculations
+
+def get_calculation_hotels():
+    return database_calculations

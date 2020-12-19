@@ -5,7 +5,7 @@ from db.hotel_db import HotelInDB
 from db.hotel_db import get_hotel_info, update_hotel, get_all_hotels
 
 from db.calculation_db import CalculationInDB
-from db.calculation_db import calculate_prices
+from db.calculation_db import calculate_prices,get_calculations_list,get_calculation_hotels
 
 from models.hotel_models import HotelIn, HotelOut
 from models.calculation_models import CalculationIn, CalculationOut
@@ -73,3 +73,22 @@ async def list_hotels():
         hotels_out.append(hotel_out)
 
     return hotels_out
+
+@api.get("/hotel/calculations/{hotel_name}")
+async def calculations_list(hotel_name: str):
+    calculations_in_db=get_calculations_list(hotel_name)
+    calculations_out=[]
+    for cal in calculations_in_db:
+        calculation_out=CalculationOut(**cal.dict())
+        calculations_out.append(calculation_out)
+    
+    return calculations_out
+
+@api.get("/hotel/calculationsHotels")
+async def calculations_hotels():
+    calculations_in_db=get_calculation_hotels()
+    calculations_out=[]
+    for calc in calculations_in_db:
+        calculations_out=CalculationOut(**calc.dict())
+        calculations_out.append(calc)
+    return calculations_out
