@@ -10,9 +10,9 @@ class HotelInDB(BaseModel):
     total_operation_cost: float
     l_days: int
     h_days: int
-    h_price: float
-    m_price: float
-    l_price: float
+    h_price: float = 0
+    m_price: float = 0
+    l_price: float = 0
 
 
 database_hotels = Dict[str, HotelInDB]
@@ -48,13 +48,16 @@ def get_hotel_info(hotel_name: str):
     else:
         return None
 
+def create_hotel(hotel_in:HotelInDB):
+    if hotel_in.name in database_hotels:
+        return False
+    else:
+        database_hotels[hotel_in.name]= hotel_in
 
 def update_hotel(hotel_in_db: HotelInDB):
     database_hotels[hotel_in_db.name] = hotel_in_db
     return hotel_in_db
 
 # Devuelve los valores de lista de hoteles
-
-
 def get_all_hotels():
     return database_hotels.values()

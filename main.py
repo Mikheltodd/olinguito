@@ -5,7 +5,7 @@ from db.user_db import UserInDB
 from db.user_db import get_user, update_user
 
 from db.hotel_db import HotelInDB
-from db.hotel_db import get_hotel_info, update_hotel, get_all_hotels
+from db.hotel_db import get_hotel_info, update_hotel, get_all_hotels, create_hotel
 
 from db.calculation_db import CalculationInDB
 from db.calculation_db import calculate_prices,get_calculations_list,get_calculation_hotels
@@ -44,6 +44,16 @@ async def auth_user(user_in: UserIn):
     if user_in_db.password != user_in.password:
         raise HTTPException(status_code=403, detail="Error de autenticacion")
     return {"Autenticado": True}
+
+@api.post("/hotel/create/")
+async def creation_hotel(hotel_in: HotelInDB):
+    new_hotel = create_hotel(hotel_in)
+    print(new_hotel)
+
+    if new_hotel != False:
+        return{"El hotel fue creado correctamente"}
+    else:
+        return HTTPException(status_code=400, detail="El hotel ya existe")
 
 @api.get("/hotel/details/{hotel_name}")
 async def get_hotel(hotel_name: str):
