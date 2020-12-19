@@ -1,12 +1,16 @@
 # Mauricio & Allison: definir las funciones de la api y sus url
 from fastapi.middleware.cors import CORSMiddleware
 
+from db.user_db import UserInDB
+from db.user_db import get_user, update_user
+
 from db.hotel_db import HotelInDB
 from db.hotel_db import get_hotel_info, update_hotel, get_all_hotels
 
 from db.calculation_db import CalculationInDB
 from db.calculation_db import calculate_prices,get_calculations_list,get_calculation_hotels
 
+from models.user_models import UserIn, UserOut
 from models.hotel_models import HotelIn, HotelOut
 from models.calculation_models import CalculationIn, CalculationOut
 
@@ -20,6 +24,7 @@ api = FastAPI()
 # async def update_hotel(user_in: HotelIn):
 
 #     return hotel_info
+
 origins = [
     "http://localhost.tiangolo.com", "https://localhost.tiangolo.com",
     "https://localhost", "http://localhost:8080", "https://olinguito-app.herokuapp.com"
@@ -30,6 +35,15 @@ api.add_middleware(
     allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
 )
 
+@api.post("/user/auth/")
+async def auth_user(user_in: UserIn):
+    #user_in_db = UserInDB.get(user_in.username)
+    user_in_db = get_user(user_in.username)
+    if user_in_db == None:
+        raise HTTPException(status_code=404, detail="El usuario no existe")
+    if user_in_db.password != user_in.password:
+        raise HTTPException(status_code=403, detail="Error de autenticacion")
+    return {"Autenticado": True}
 
 @api.get("/hotel/details/{hotel_name}")
 async def get_hotel(hotel_name: str):
