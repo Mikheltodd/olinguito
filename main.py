@@ -103,6 +103,6 @@ async def calculations_hotels():
     calculations_in_db=get_calculation_hotels()
     calculations_out=[]
     for calc in calculations_in_db:
-        calculations_out=CalculationOut(**calc.dict())
-        calculations_out.append(calc)
+        calculation_out=CalculationOut(**calc.dict())
+        calculations_out.append(calculation_out)
     return calculations_out
