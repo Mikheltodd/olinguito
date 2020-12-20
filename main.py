@@ -47,13 +47,11 @@ async def auth_user(user_in: UserIn):
 
 @api.post("/hotel/create/")
 async def creation_hotel(hotel_in: HotelInDB):
-    new_hotel = create_hotel(hotel_in)
-    print(new_hotel)
-
-    if new_hotel != False:
+    result = create_hotel(hotel_in)
+    if result == False:        
+        raise HTTPException(status_code=400, detail="El hotel ya existe")        
+    else:         
         return{"El hotel fue creado correctamente"}
-    else:
-        return HTTPException(status_code=400, detail="El hotel ya existe")
 
 @api.get("/hotel/details/{hotel_name}")
 async def get_hotel(hotel_name: str):

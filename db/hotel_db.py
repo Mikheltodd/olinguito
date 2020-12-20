@@ -53,6 +53,7 @@ def create_hotel(hotel_in:HotelInDB):
         return False
     else:
         database_hotels[hotel_in.name]= hotel_in
+        return True
 
 def update_hotel(hotel_in_db: HotelInDB):
     database_hotels[hotel_in_db.name] = hotel_in_db
