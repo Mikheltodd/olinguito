@@ -77,6 +77,9 @@ async def make_calculation(calculation_in: CalculationIn):
     if calculation_in.expected_profit < 0 or calculation_in.incidental_value < 0:
         raise HTTPException(
             status_code=400, detail="Porcentaje de utilidad y/o Porcentaje de imprevistos no pueden ser negativos")
+    if calculation_in.expected_profit < calculation_in.incidental_value:
+        raise HTTPException(
+            status_code=400, detail="Porcentaje de utilidad no puede ser menor que el porcentaje de imprevistos")
 
     # Cálculo de los precios
     calculation_results_db = CalculationInDB(**calculation_in.dict())
