@@ -30,7 +30,7 @@ def calculate_prices(calculation_in_db: CalculationInDB, hotel_in_db: HotelInDB)
     l_days = hotel_in_db.l_days
     h_days = hotel_in_db.h_days
     m_days = 365 - l_days - h_days
-    operation_cost = hotel_in_db.total_operation_cost/hotel_in_db.n_rooms
+    operation_cost = (hotel_in_db.total_operation_cost/hotel_in_db.n_rooms)/365
     l_price = operation_cost*(1+i)
     m_price = operation_cost*(1+u)
     h_price = ((365-m_days)*m_price - l_days*l_price)/h_days
