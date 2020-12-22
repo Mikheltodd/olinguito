@@ -1,0 +1,3 @@
+https://olinguito-app.herokuapp.com/user/auth
+Usuario: camilo24
+Contraseña: root

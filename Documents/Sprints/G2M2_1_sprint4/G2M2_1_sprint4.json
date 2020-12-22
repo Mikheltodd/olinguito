@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "fe188151-a880-4b98-b73f-889bd7d23ad0",
+		"name": "G2M2_1_sprint4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post_Auth_User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\": \"camilo24\",\r\n\"password\": \"root\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/user/auth/",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"user",
+						"auth",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll_Hotels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/list",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOne_Hotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/details/olinguito",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"details",
+						"olinguito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Hotel",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"name\": \"Hotel Ultimate\",\r\n    \"n_rooms\": \"35\",\r\n    \"total_operation_cost\": \"50000000\",\r\n    \"l_days\": \"200\",\r\n    \"h_days\": \"75\"\r\n }               ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/create/",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll_CalculationsHotels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/calculationsHotels",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"calculationsHotels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOne_CalculationHotel",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/calculations/olinguito",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"calculations",
+						"olinguito"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calculation_Hotel",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hotel_name\": \"olinguito\",\r\n    \"expected_profit\": 11,\r\n    \"incidental_value\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://olinguito.herokuapp.com/hotel/calculation/",
+					"protocol": "https",
+					"host": [
+						"olinguito",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"hotel",
+						"calculation",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
